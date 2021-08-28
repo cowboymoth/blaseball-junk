@@ -10,8 +10,8 @@ with game_events_extra as (
 			(case when ge.inning >= 8 then 8 else ge.inning end) as inning_extra,
 			ge.top_of_inning,
 			ceiling(case when ge.top_of_inning then ge.away_score - ge.home_score else ge.home_score - ge.away_score end) as before_run_diff,
-			(case when ceiling(case when ge.top_of_inning then ge.away_score - ge.home_score else ge.home_score - ge.away_score end)>=15 then 15
-			 when ceiling(case when ge.top_of_inning then ge.away_score - ge.home_score else ge.home_score - ge.away_score end)<=-15 then -15 
+			(case when ceiling(case when ge.top_of_inning then ge.away_score - ge.home_score else ge.home_score - ge.away_score end)>=11 then 11
+			 when ceiling(case when ge.top_of_inning then ge.away_score - ge.home_score else ge.home_score - ge.away_score end)<=-11 then -11 
 			 else ceiling(case when ge.top_of_inning then ge.away_score - ge.home_score else ge.home_score - ge.away_score end) end) as run_diff_extra,
 			-- Not sure about using ceiling here. For decimal score diffs, if you're ahead it rounds up, but if you're behind it rounds down.
 			(case when (ge.top_of_inning and (g.away_score>g.home_score)) or (not ge.top_of_inning and g.away_score<g.home_score) then 1 else 0 end) as game_winning,
