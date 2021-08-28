@@ -28,7 +28,7 @@ with game_events_extra as (
 --		  	(max(case when ge.top_of_inning then ge.away_score else ge.home_score end) over inning_window)-(case when ge.top_of_inning then ge.away_score else ge.home_score end) as future_runs   -- Max instead of last, if prefered.
 	from data.game_events ge
   	left join data.game_event_base_runners gebr on ge.id = gebr.game_event_id
-  	where ge.season = 23 
+  	where ge.season = 17
   	and ge.day < 99
   	group by ge.id
   	window inning_window as (partition by ge.game_id, ge.inning, ge.top_of_inning order by ge.id range between unbounded preceding and unbounded following)
