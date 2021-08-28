@@ -122,7 +122,7 @@ player_woba as (
 			count(*) filter (where ge.event_type in (select event_type from taxa.event_types where plate_appearance = 1)) as pa
 	from data.players p
 	join data.game_events ge on ge.batter_id = p.player_id and p.valid_until is null
-	where p.player_name NOT LIKE '%II' --removes replicas bc fuck replicas
+	where p.player_name NOT LIKE '%II' --removes replicas all my homies hate replicas
 	and p.player_name NOT LIKE '% IV'
 	and p.player_name NOT LIKE '% V'
 	and p.player_name NOT LIKE '% VI'
