@@ -8,7 +8,7 @@ GROUP BY season
 SELECT ranked_ops.* from
 	(SELECT
 		p.player_name,
-		p.season, 
+		p.season+1 AS season, 
 		p.plate_appearances,
 		TRUNC(p.on_base_slugging/lg.on_base_slg * 100, 0) AS ops_plus,
 		rank() OVER (PARTITION BY p.player_name ORDER BY (p.on_base_slugging/lg.on_base_slg) DESC)
